@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  deployment_api:
+    image: registry.nexdev.net:5050/nexcel/nexops/deployment-api:latest
+    ports:
+      - "22222:22222"
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints:
+          - node.labels.NEXOPS_LOW_STORAGE == yes
+    networks:
+      - swarm_nexops
+networks:
+  swarm_nexops:
+    external: true
