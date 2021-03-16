@@ -17,14 +17,12 @@ server.get('/', (req, res) => {
   res.send('Deployment API is running!');
 });
 
-server.post('/command', (req, res) => {
-  console.log(req.body);
-
+server.post('/command', { preHandler: upload.single('file') }, (req, res) => {
   ssh
     .connect({
       host: req.body.host,
       port: req.body.port ?? 22,
-      username: req.body.user ?? root,
+      username: req.body.user ?? 'root',
       privateKey: path.join(__dirname, 'id_rsa'),
     })
     .then(() => {
@@ -58,7 +56,7 @@ server.post('/scp', { preHandler: upload.single('file') }, async (req, res) => {
     })
     .then(() => {
       ssh
-        .putFile(`${folderPath}/${fileName}`, `${req.body.remotePath}/${fileName}`)
+        .putFile(`${folderPath}/${fileName}`, `${req.body.remotePath}`)
         .then(() => {
           fs.rmdirSync(folderPath, { recursive: true });
           res.status(200).send('success');

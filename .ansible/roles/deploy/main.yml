@@ -1,0 +1,33 @@
+---
+- name: Verify stacks directory exists (on first swarm node)
+  when: inventory_hostname in groups['swarm_managers']
+  file:
+    path: "/home/{{ansible_user}}/stacks"
+    state: directory
+
+- name: Create portainer directory
+  file:
+    path: "{{gluster_path}}/deployment-api"
+    mode: "0755"
+    state: directory
+  become: yes
+
+- name: Create network
+  docker_network:
+    name: "{{swarm_network_nexops}}"
+    driver: "overlay"
+    attachable: true
+  ignore_errors: yes
+  become: yes
+
+- name: Copy docker-compose file
+  template:
+    src: "templates/docker-compose.yml.j2"
+    dest: /home/{{ansible_user}}/stacks/deployment-api-stack.yml
+  become: yes
+
+- name: Build up and run container
+  shell: |
+    cd /home/{{ansible_user}}/stacks
+    docker stack deploy --compose-file=deployment-api-stack.yml --with-registry-auth nexops
+  become: yes
