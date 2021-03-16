@@ -3,3 +3,10 @@
   roles:
     - role: deploy
       tags: deploy
+
+---
+- hosts: all
+  roles:
+    - role: build
+      tags: build
+
