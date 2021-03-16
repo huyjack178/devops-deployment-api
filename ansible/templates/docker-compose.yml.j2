@@ -5,11 +5,7 @@ services:
     ports:
       - "22222:22222"
     deploy:
-      mode: replicated
-      replicas: 2
-      placement:
-        constraints:
-          - node.labels.NEXOPS_LOW_STORAGE == yes
+      mode: global
     networks:
       - swarm_nexops
 networks:
