@@ -5,7 +5,7 @@
     path: "/home/{{ansible_user}}/stacks"
     state: directory
 
-- name: Create portainer directory
+- name: Create directory
   file:
     path: "{{gluster_path}}/deployment-api"
     mode: "0755"
@@ -21,7 +21,7 @@
   become: yes
 
 - name: Copy src file
-  template:
+  synchronize:
     src: "files/src-code"
     dest: /home/{{ansible_user}}/stacks/src-code
   become: yes
