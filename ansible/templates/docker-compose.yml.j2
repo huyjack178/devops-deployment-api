@@ -3,7 +3,9 @@ services:
   deployment_api:
     image: registry.nexdev.net:5050/nexcel/nexops/deployment-api:latest
     ports:
-      - "22222:22222"
+      - published: 22222
+        target: 22222
+        mode: "host"
     deploy:
       mode: global
     networks:
