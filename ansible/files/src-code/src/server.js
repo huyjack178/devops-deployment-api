@@ -35,9 +35,9 @@ server.post('/command', { preHandler: upload.single('file') }, (req, res) => {
             res.status(200).send(result.stdout);
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => res.status(500).send(error));
     })
-    .catch((error) => console.log(error));
+    .catch((error) => res.status(500).send(error));
 });
 
 server.post('/scp', { preHandler: upload.single('file') }, async (req, res) => {
@@ -61,9 +61,9 @@ server.post('/scp', { preHandler: upload.single('file') }, async (req, res) => {
           fs.rmdirSync(folderPath, { recursive: true });
           res.status(200).send('success');
         })
-        .catch((error) => console.log(error));
+        .catch((error) => res.status(500).send(error));
     })
-    .catch((error) => console.log(error));
+    .catch((error) => res.status(500).send(error));
 });
 
 const mkDirByPathSync = (targetDir, { isRelativeToScript = false } = {}) => {
