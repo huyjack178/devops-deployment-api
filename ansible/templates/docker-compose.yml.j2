@@ -7,7 +7,8 @@ services:
         target: 22222
         mode: "host"
     deploy:
-      mode: global
+      mode: replicated
+      replicas: 6
     networks:
       - swarm_nexops
 networks:
