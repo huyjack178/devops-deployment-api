@@ -5,7 +5,7 @@ services:
     ports:
       - published: 22222
         target: 22222
-        mode: "host"
+        mode: "ingress"
     deploy:
       mode: replicated
       replicas: 6
