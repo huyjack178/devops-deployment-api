@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^6.2.5",
+    "@sentry/tracing": "^6.2.5",
     "fastify": "^3.13.0",
     "fastify-cors": "^5.2.0",
     "fastify-multer": "^2.0.2",

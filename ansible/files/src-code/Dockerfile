@@ -1,7 +1,7 @@
 FROM registry.nexdev.net:5050/docker/node:14.15.1-slim
 
 USER root
-
+ENV TZ="America/New_York"
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 RUN mkdir /app && chown node:node /app
