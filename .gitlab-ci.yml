@@ -7,6 +7,9 @@ stages:
 include:
   - project: 'ci/common-ci'
     ref: rocketor
+    file: 'rocketor-integration/rules/index.gitlab-ci.yml'
+  - project: 'ci/common-ci'
+    ref: rocketor
     file: 'docker/base/build-docker-image.gitlab-ci.yml'
   - project: 'ci/common-ci'
     ref: rocketor
