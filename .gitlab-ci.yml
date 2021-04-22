@@ -11,8 +11,6 @@ include:
   - project: 'ci/common-ci'
     ref: rocketor
     file: 'docker/base/post-build-docker-image.gitlab-ci.yml'
-  - project: 'ci/common-ci'
-    ref: rocketor
 
 variables:
   PROJECT_ROOT_PATH: .
