@@ -8,7 +8,6 @@ const Sentry = require('@sentry/node');
 
 module.exports = (server) => {
   server.post('/command', { preHandler: upload.single('file') }, (req, res) => {
-    Sentry.captureMessage(`**[${req.body.env}]** Error Test (Job ID: ${req.body.jobid}/ Commit: ${req.body.commit})`, 'error');
     ssh
       .connect({
         host: req.body.host,
@@ -28,12 +27,12 @@ module.exports = (server) => {
             }
           })
           .catch((error) => {
-            Sentry.captureException(`JOB ID: ${req.body.jobid}\n COMMIT: ${req.body.commit}\n ERROR: ${error}`);
+            Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
             res.status(500).send(error);
           });
       })
       .catch((error) => {
-        Sentry.captureException(`JOB ID: ${req.body.jobid}\n COMMIT: ${req.body.commit}\n ERROR: ${error}`);
+        Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
         res.status(500).send(error);
       });
   });
