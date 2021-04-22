@@ -22,17 +22,17 @@
   ignore_errors: yes
   become: yes
 
-- name: Copy src file
-  synchronize:
-    src: "files/src-code"
-    dest: /home/{{ansible_user}}/stacks/src-code
-  become: yes
+# - name: Copy src file
+#   synchronize:
+#     src: "files/src-code"
+#     dest: /home/{{ansible_user}}/stacks/src-code
+#   become: yes
 
-- name: Map configs file
-  synchronize:
-    src: "files/src-code/src/configs.{{env}}.js"
-    dest: /home/{{ansible_user}}/stacks/src-code/src/configs.js
-  become: yes
+# - name: Map configs file
+#   synchronize:
+#     src: "files/src-code/src/configs.{{env}}.js"
+#     dest: /home/{{ansible_user}}/stacks/src-code/src/configs.js
+#   become: yes
 
 - name: Copy docker-compose file
   template:
