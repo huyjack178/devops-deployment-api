@@ -20,7 +20,7 @@ module.exports = (server) => {
           .execCommand(req.body.command)
           .then((result) => {
             if (result.stderr) {
-              if (result.stderr.includes('WARNING')) {
+              if (result.stderr.includes('WARNING') || result.stderr.includes('Error: No such')) {
                 res.status(200).send(result.stderr);
                 return;
               }
