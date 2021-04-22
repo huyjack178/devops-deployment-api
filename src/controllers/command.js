@@ -20,19 +20,24 @@ module.exports = (server) => {
           .execCommand(req.body.command)
           .then((result) => {
             if (result.stderr) {
-              Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${result.stderr}`, 'error');
+              if (result.stderr.includes('WARNING')) {
+                res.status(200).send(result.stderr);
+                return;
+              }
+
+              Sentry.captureMessage(`**[${req.body.env}|${req.body.host}|${req.body.jobid}]** ${result.stderr}`, 'error');
               res.status(500).send(result.stderr);
             } else {
               res.status(200).send(result.stdout);
             }
           })
           .catch((error) => {
-            Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
+            Sentry.captureMessage(`**[${req.body.env}|${req.body.host}|${req.body.jobid}]** ${error}`, 'error');
             res.status(500).send(error);
           });
       })
       .catch((error) => {
-        Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
+        Sentry.captureMessage(`**[${req.body.env}|${req.body.host}|${req.body.jobid}]** ${error}`, 'error');
         res.status(500).send(error);
       });
   });
