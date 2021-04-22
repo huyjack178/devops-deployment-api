@@ -25,5 +25,6 @@ server.listen('22222', '0.0.0.0', (err, address) => {
     process.exit(1);
   }
 
+  Sentry.captureMessage(`Server listening at ${address}`, 'info');
   console.log(`Server listening at ${address}`);
 });

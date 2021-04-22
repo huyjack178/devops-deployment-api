@@ -8,7 +8,7 @@ const Sentry = require('@sentry/node');
 
 module.exports = (server) => {
   server.post('/command', { preHandler: upload.single('file') }, (req, res) => {
-    Sentry.captureMessage(`**[${req.body.env}]** Error Test (Job: ${req.body.jobid}/ Commit: ${req.body.commit})`, 'error');
+    Sentry.captureMessage(`**[${req.body.env}]** Error Test (Job ID: ${req.body.jobid}/ Commit: ${req.body.commit})`, 'error');
     ssh
       .connect({
         host: req.body.host,
