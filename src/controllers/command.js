@@ -20,19 +20,19 @@ module.exports = (server) => {
           .execCommand(req.body.command)
           .then((result) => {
             if (result.stderr) {
-              Sentry.captureMessage(`${result.stderr} (${req.body.jobid}/${req.body.commit})`, 'error');
+              Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${result.stderr}`, 'error');
               res.status(500).send(result.stderr);
             } else {
               res.status(200).send(result.stdout);
             }
           })
           .catch((error) => {
-            Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
+            Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
             res.status(500).send(error);
           });
       })
       .catch((error) => {
-        Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
+        Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
         res.status(500).send(error);
       });
   });

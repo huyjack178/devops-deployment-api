@@ -28,12 +28,12 @@ module.exports = (server) => {
             res.status(200).send('success');
           })
           .catch((error) => {
-            Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
+            Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
             res.status(500).send(error);
           });
       })
       .catch((error) => {
-        Sentry.captureMessage(`${error} (${req.body.jobid}/${req.body.commit})`, 'error');
+        Sentry.captureMessage(`**[${req.body.env}|${req.body.jobid}]** ${error}`, 'error');
         res.status(500).send(error);
       });
   });
