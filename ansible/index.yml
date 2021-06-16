@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: swarm_leader
   roles:
     - role: deploy
 
