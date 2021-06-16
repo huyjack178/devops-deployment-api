@@ -1,3 +1,3 @@
 module.exports = {
-  sentryDsn: 'https://80fa5fa7e8b44169863c0504e614905c@sentry.nexdev.net/121',
+  sentryDsn: 'https://ca83f9ce81ac4e578da7f8a73e7ae91e@sentry.lumigame.com/34',
 };
