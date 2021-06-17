@@ -10,7 +10,7 @@ services:
         constraints:
           - node.labels.NEXOPS_LOW_STORAGE == yes
     networks:
-      - swarm_nexops
+      - swarm_{{org | lower}}_{{env | lower}}
 networks:
   swarm_nexops:
     external: true
