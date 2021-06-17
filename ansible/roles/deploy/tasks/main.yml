@@ -12,15 +12,15 @@
     state: directory
   become: yes
 
-- name: Create network
-  docker_network:
-    name: "{{swarm_network_nexops}}"
-    driver: "overlay"
-    ipam_config:
-      - subnet: 192.168.0.0/24
-    attachable: true
-  ignore_errors: yes
-  become: yes
+# - name: Create network
+#   docker_network:
+#     name: "{{swarm_network_nexops}}"
+#     driver: "overlay"
+#     ipam_config:
+#       - subnet: 192.168.0.0/24
+#     attachable: true
+#   ignore_errors: yes
+#   become: yes
 
 - name: Copy docker-compose file
   template:
