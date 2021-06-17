@@ -12,5 +12,5 @@ services:
     networks:
       - swarm_{{org | lower}}_{{env | lower}}
 networks:
-  swarm_nexops:
+  swarm_{{org | lower}}_{{env | lower}}:
     external: true
