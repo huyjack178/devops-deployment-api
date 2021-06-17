@@ -2,10 +2,10 @@ version: '3.3'
 services:
   deployment_api:
     image: registry.nexdev.net:5050/nexcel/nexops/deployment-api:{{env}}-latest
-    ports:
+    {# ports:
       - published: 22222
         target: 22222
-        mode: "host"
+        mode: "host" #}
     deploy:
       mode: replicated
       endpoint_mode: dnsrr
