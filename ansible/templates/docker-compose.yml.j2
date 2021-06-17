@@ -9,6 +9,9 @@ services:
     deploy:
       mode: replicated
       replicas: 6
+      placement:
+        constraints:
+          - node.labels.NEXOPS_LOW_STORAGE == yes
     networks:
       - swarm_nexops
 networks:
