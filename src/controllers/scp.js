@@ -5,6 +5,7 @@ const path = require('path');
 const multer = require('fastify-multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+const Sentry = require('@sentry/node');
 
 module.exports = (server) => {
   server.post('/scp', { preHandler: upload.single('file') }, async (req, res) => {
