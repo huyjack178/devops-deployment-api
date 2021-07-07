@@ -51,15 +51,15 @@ post:build:local:
   environment:
     name: LOCAL
 
-build:prod:
+build:uat:
   extends: 
     - .build:default:image
   environment:
-    name: PROD
+    name: UAT
 
-post:build:prod:
-  needs: ['build:prod']
+post:build:uat:
+  needs: ['build:uat']
   extends: 
     - .post_build
   environment:
-    name: PROD
+    name: UAT
