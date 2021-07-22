@@ -51,6 +51,19 @@ post:build:local:
   environment:
     name: LOCAL
 
+build:sit:
+  extends: 
+    - .build:default:image
+  environment:
+    name: SIT
+
+post:build:sit:
+  needs: ['build:sit']
+  extends: 
+    - .post_build
+  environment:
+    name: SIT
+
 build:uat:
   extends: 
     - .build:default:image
