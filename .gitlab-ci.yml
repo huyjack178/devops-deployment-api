@@ -64,15 +64,15 @@ post:build:sit:
   environment:
     name: SIT
 
-build:kbt:
+build:uat:
   extends: 
     - .build:default:image
   environment:
-    name: KBT
+    name: UAT
 
-post:build:kbt:
-  needs: ['build:KBT']
+post:build:uat:
+  needs: ['build:uat']
   extends: 
     - .post_build
   environment:
-    name: KBT
+    name: UAT
