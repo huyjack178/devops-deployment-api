@@ -18,7 +18,6 @@ controllers.home(server);
 controllers.auth(server);
 controllers.command(server);
 controllers.scp(server);
-
 server.listen('22222', '0.0.0.0', (err, address) => {
   if (err) {
     console.error(err);
